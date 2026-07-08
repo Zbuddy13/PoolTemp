@@ -20,6 +20,7 @@ shows the current temperature when opened and graphs the history over 24 hours,
 | Directory | What it is |
 |---|---|
 | [`firmware/`](firmware/) | PlatformIO project for the ESP32: DS18B20 reading, WiFi + mDNS (`pooltemp.local`), JSON API, hourly logging to flash (30 days retained, survives reboots). |
+| [`arduino/`](arduino/) | The same firmware as an **Arduino IDE** sketch (`arduino/PoolTemp/PoolTemp.ino`) — use this if you prefer the Arduino IDE over PlatformIO. |
 | [`app/`](app/) | Flutter app: live temperature on open, pull-to-refresh, history graph (24H / 7D / 30D), °F/°C toggle, configurable device address. |
 
 ## Hardware
