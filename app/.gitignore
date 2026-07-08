@@ -1,0 +1,15 @@
+# Dart/Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Platform folders are generated with `flutter create .` (see README);
+# once generated and customized, remove these lines and commit them.
