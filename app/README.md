@@ -62,6 +62,13 @@ For release builds: `flutter build apk` (Android) or open `ios/Runner.xcworkspac
 in Xcode and archive (iOS — requires a Mac and an Apple developer account to
 install on a physical phone; a free account works for personal sideloading).
 
+**No Android toolchain handy?** The **Build APK** GitHub Actions workflow
+builds a test APK on every push that touches `app/` (or on demand from the
+Actions tab). Download the `pooltemp-apk` artifact from the run, copy it to
+your phone, and install it — it's debug-signed, so Android will ask you to
+allow installing from unknown sources. The workflow already applies the
+cleartext-HTTP tweak, so the CI-built APK can reach the ESP32 out of the box.
+
 ## Troubleshooting
 
 - **"Could not reach pooltemp.local" on Android** — Android's mDNS support for
