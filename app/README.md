@@ -24,13 +24,17 @@ The ESP32 serves plain HTTP on your local network, which both platforms block
 by default. Without these two edits the app will show "could not reach" errors
 even though `curl` works.
 
-**Android** — in `android/app/src/main/AndroidManifest.xml`, add the attribute
-to the `<application>` tag:
+**Android** — in `android/app/src/main/AndroidManifest.xml`, add the INTERNET
+permission (Flutter's template only grants it to debug builds — without it a
+release APK can't make any network request) and allow cleartext on the
+`<application>` tag:
 
 ```xml
-<application
-    android:usesCleartextTraffic="true"
-    ...>
+<manifest ...>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:usesCleartextTraffic="true"
+        ...>
 ```
 
 **iOS** — in `ios/Runner/Info.plist`, add inside the top-level `<dict>`:

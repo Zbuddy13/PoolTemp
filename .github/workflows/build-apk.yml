@@ -31,11 +31,14 @@ jobs:
       - name: Generate Android project
         run: flutter create . --platforms android --project-name pooltemp --org com.pooltemp
 
-      # The ESP32 serves plain HTTP, which Android blocks by default.
-      - name: Allow cleartext HTTP to the ESP32
+      # Two manifest fixes the release build needs to reach the ESP32:
+      # - INTERNET permission (Flutter's template only grants it to debug builds)
+      # - cleartext HTTP allowed (the ESP32 serves plain HTTP, blocked by default)
+      - name: Allow network access to the ESP32
         run: |
-          sed -i '0,/<application/s//<application android:usesCleartextTraffic="true"/' android/app/src/main/AndroidManifest.xml
+          sed -i '0,/<application/s#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application android:usesCleartextTraffic="true"#' android/app/src/main/AndroidManifest.xml
           grep -q 'usesCleartextTraffic' android/app/src/main/AndroidManifest.xml
+          grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml
 
       # flutter create may overwrite tracked files and adds a template
       # counter-app test that doesn't apply to this project.
